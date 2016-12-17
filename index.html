@@ -3,7 +3,7 @@
 
 <head>
     <meta charset=utf-8 />
-    <title>USA Plants!</title>
+    <title>USA Power Plants</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
@@ -59,6 +59,7 @@
     <div id='map'></div>
 
     <footer>
+        <p>This map displays the Hydroelectric, Nuclear, and Coal Plants throughout the USA. Clicking on the map will filter the plants to the ones within 500km of your click and display the total production of those plants broken down by type. Clicking on a specific plant will provide specific details for that plant.</p>
         <p>Map authored by Sebastian Hancock</p>
     </footer>
 
@@ -120,7 +121,6 @@
             }
         });
 
-
         for (var layer in layerInfo) {
 
             geoJsonLayers[layer] = L.geoJson(plants, {
@@ -142,10 +142,7 @@
             }).addTo(map);
         };
 
-
         map.on('click', function (e) {
-
-            //map.panTo(e.latlng);
 
             var stats = {};
 
@@ -222,7 +219,7 @@
             "<b style='color:#1f78b4'>Hydro</b>": geoJsonLayers.hydroLayer,
             "<b style='color:#666666'>Coal</b>": geoJsonLayers.coalLayer,
             "<b style='color:#00cc00'>Nuclear</b>": geoJsonLayers.nuclearLayer
-        }
+        };
 
         L.control.layers(null, sourcesLabels, {
             collapsed: false
